@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        {% block title %}wot tournament{% endblock %}
+    </title>
+</head>
+<body>
+    {% block menu %}
+        <ul>
+            <li><a href="{% url 'tournament:index' %}">Home</a></li>
+            {% if user.is_authenticated %}
+                <li><a href="{% url 'accounts:profile' %}">Мой профиль {{ user.username }}</a></li>
+                <li><a href="{% url 'accounts:logout' %}?next={{request.path}}">Logout</a></li>
+            {% else %}
+                <li><a href="{% url 'accounts:login' %}?next={{request.path}}">Login</a></li>
+                <li><a href="{% url 'accounts:register' %}">Register</a></li>
+            {% endif %}
+            <hr>
+        </ul>
+    {% endblock %}
+
+    {% block content %}
+    {% endblock %}
+</body>
+</html>
