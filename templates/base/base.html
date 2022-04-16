@@ -1,9 +1,15 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    {% comment %} Тест фронтенда загрузки реплея {% endcomment %}
+    {% comment %} <link rel="stylesheet" href="{% static 'css/update_replay_form.css' %}">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script> {% endcomment %}
+    
     <title>
         {% block title %}wot tournament{% endblock %}
     </title>
@@ -13,17 +19,21 @@
         <ul>
             <li><a href="{% url 'tournament:index' %}">Home</a></li>
             {% if user.is_authenticated %}
-                <li><a href="{% url 'accounts:profile' %}">Мой профиль {{ user.username }}</a></li>
-                <li><a href="{% url 'accounts:logout' %}?next={{request.path}}">Logout</a></li>
+                <li><a href="{% url 'profile' %}">Мой профиль {{ user.username }}</a></li>
+                <li><a href="{% url 'logout' %}?next={{request.path}}">Выйти</a></li>
+                <li><a href="{% url 'users' %}">Пользователи</a></li>
             {% else %}
-                <li><a href="{% url 'accounts:login' %}?next={{request.path}}">Login</a></li>
-                <li><a href="{% url 'accounts:register' %}">Register</a></li>
+                <li><a href="{% url 'login' %}?next={{request.path}}">Войти</a></li>
+                <li><a href="{% url 'register' %}">Регистрация</a></li>
             {% endif %}
+            <li><a href="{% url 'tournament:tournament_list' %}">Турниры</a></li>
             <hr>
         </ul>
     {% endblock %}
 
     {% block content %}
     {% endblock %}
+    {% comment %} Тест фронтенда загрузки реплея {% endcomment %}
+    {% comment %} <script src="{% static 'js/update_replay_form.js' %}"></script> {% endcomment %}
 </body>
 </html>

@@ -6,6 +6,6 @@
         {{ form.as_p }}
         <input type="submit" value="Зарегестрироваться">
     </form>
-    <a href="{% url 'accounts:login' %}">Уже есть аккаунт</a>
-    <a href="{% url 'accounts:password_reset' %}">Забыли пароль?</a>
+    <a href="{% url 'login' %}">Уже есть аккаунт</a>
+    <a href="{% url 'password_reset' %}">Забыли пароль?</a>
 {% endblock %}

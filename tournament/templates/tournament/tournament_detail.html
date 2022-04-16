@@ -1,0 +1,34 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+    <h1>{{ tournament }}</h1>
+    <p>разная ифа...</p>
+    {% if tournament.is_over %}
+        <p>Турнир завершен</p>
+    {% else %}
+        {% if user_in_current_tournament %}
+            <p>Вы учавствуете в турнире</p>
+            {% if tournament.is_active %}
+                <a href="{% url 'tournament:leave_tournament' pk=tournament.pk %}">Покинуть турнир</a>
+                <p>Турнир уже идёт, если вы выйдете из него сейчас, то не сможете продлжыть принимать в нём участие</p>
+            {% else %}
+                <a href="{% url 'tournament:leave_tournament' pk=tournament.pk %}">Покинуть турнир</a>
+                <p>Вы сможете попасть обратно в этот турнир, если выйдете сейчас</p>
+            {% endif %}
+        {% else %}
+            {% if user_in_othe_tournament %}
+                {% if tournament.is_active %}
+                    <p>Вы не можете принять участие так как турнир уже идёт</p>
+                {% else %}
+                    <p>Вы не можете принять участие так как уже принимаете участи в турнире "{{ user.tournaments.first }}"</p>
+                {% endif %}
+            {% else %}
+                {% if tournament.is_active %}
+                    <p>Вы не можете принять участие так как турнир уже идёт</p>
+                {% else %}
+                    <a href="{% url 'tournament:enter_tournament' pk=tournament.pk %}">Вступить</a>
+                {% endif %}
+            {% endif %}
+        {% endif %}
+    {% endif %}
+{% endblock %}

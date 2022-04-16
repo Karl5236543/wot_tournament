@@ -1,0 +1,31 @@
+{% extends 'base/base.html' %}
+{%  load static %}
+
+{% block content %}
+    <h1>Загрузить реплей</h1>
+    <form method="POST" action="" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Загрузить реплей">
+    </form>
+{% endblock %} 
+
+
+
+{% comment %} Тест фронтенда загрузки реплея {% endcomment %}
+{% comment %} 
+{% block content %}
+    <h1>Загрузить реплей</h1>
+    <form id="upload-container" method="POST" action="" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% for error in form.replay.errors %}
+            <p>{{ error }}</p>
+        {% endfor %}
+        <img id="upload-image" src="{% static 'img/upload_file_image.png' %}">
+        <div>
+            {{ form.replay }}
+            {{ form.replay.label_tag }}
+            <span>или перетащите его сюда</span>
+        </div>
+    </form>
+{% endblock %} {% endcomment %}

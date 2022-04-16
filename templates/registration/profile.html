@@ -3,5 +3,6 @@
     <h4>{{ user.username }}</h4>
     emal: {{ user.email }}
     <hr>
-    <a href="{% url 'accounts:password_change' %}">сметить пароль</a>
+    <a href="{% url 'password_change' %}">сметить пароль</a>
+    <a href="{%  url 'user_update' %}">редактировать профиль</a>
 {% endblock %}

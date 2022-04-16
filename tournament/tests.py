@@ -1,3 +1,5 @@
-from django.test import TestCase
+import cringe
 
-# Create your tests here.
+
+
+print(cringe.__name__)

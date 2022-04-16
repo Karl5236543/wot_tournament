@@ -1,0 +1,11 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+    <ul>
+        {% for player in player_list %}
+            <li>
+                {{ player.username }}- <a href="{% url 'create_dialog' user_id=player.pk %}">отправить сообщение</a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

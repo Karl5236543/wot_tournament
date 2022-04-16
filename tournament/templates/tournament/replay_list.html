@@ -1,0 +1,12 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+    <h1>Загруженные реплеи</h1>
+    <ul>
+        {% for replay_name in replay_files_names %}
+            <li>
+                {{ replay_name }}<a href="{% url 'tournament:download_replay' replay_name %}"> | Download</a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

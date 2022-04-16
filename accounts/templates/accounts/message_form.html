@@ -1,0 +1,17 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+<div style="width: 300px; height: 500px; overflow-y: scroll; background-color: antiquewhite;">
+    {% for message in messages %}
+        <div style="text-align: {% if message.sender.pk != user.pk %}left{% else %}right{% endif %}; margin: 5px;">
+            <p>{{ message.text }}</p>
+        </div>
+    {% endfor %}
+</div>
+
+<form action="" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Отправить сообщение">
+</form>
+{% endblock %}

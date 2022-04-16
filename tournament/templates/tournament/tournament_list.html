@@ -1,0 +1,20 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+<h1>Турниры</h1>
+<ul>
+    {% for tournament in tournament_list %}
+        <li>
+            {% for tank in tournament.tanks.all %}
+                <img src="{{ tank.image.url }}" alt="" width="50">
+            {%  endfor %}
+            <a href="{{ tournament.get_absolute_url }}">{{ tournament.name }}</a>
+            <p>{{ tournament.goal }}</p>
+            <h5>{{ tournament.total_prize }}</h5>
+            <strong>{{ tournament.start_time }}</strong>
+            <strong>{{ tournament.is_active }}</strong>
+        </li>
+        </li>
+    {% endfor %}
+</ul>
+{% endblock %}
